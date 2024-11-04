@@ -20,6 +20,8 @@ function Navbar() {
             <NavLink to="/classes" className="hover:text-blue-300">Classes</NavLink>
             <NavLink to="/blog" className="hover:text-blue-300">Blog</NavLink>
             <NavLink to="/contact" className="hover:text-blue-300">Contact</NavLink>
+            <NavLink to="/admin" className="hover:text-blue-300">Admin</NavLink>
+
           </ul>
           {/* Mobile Menu Icon */}
           <MenuIcon 

@@ -18,7 +18,7 @@ const LandingPage = () => {
           Your journey to a healthier, happier you begins right here, right now</p>
           <div className='flex gap-3 mt-4'>
         <NavLink to='/contact'>  <button className='text-xl bg-[#6e2424] py-3 px-5 font-semibold hover:text-white text-white rounded-full hover:bg-black '>Contact Us</button></NavLink>
-        <NavLink to='/admin'>   <button className='text-xl bg-[#6e2424] py-3 px-5 font-semibold hover:text-white text-white rounded-full hover:bg-black'>Admin</button></NavLink>
+        {/* <NavLink to='/admin'>   <button className='text-xl bg-[#6e2424] py-3 px-5 font-semibold hover:text-white text-white rounded-full hover:bg-black'>Admin</button></NavLink> */}
         </div>
         </div>
         <img src='/logo.png' className='w-fit'/>

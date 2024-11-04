@@ -55,6 +55,10 @@ function AdminDashboard() {
             </li>
           </ul>
         </nav>
+        <h2 className='cursor-pointer hover:bg-red-500  flex border w-fit p-2 rounded-lg items-end' onClick={()=>{
+          localStorage.removeItem('token');
+          window.location.href = '/';
+        }}>Logout</h2>
       </div>
 
       {/* Main Content */}
