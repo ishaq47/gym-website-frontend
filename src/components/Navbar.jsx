@@ -42,6 +42,7 @@ function Navbar() {
           <NavLink to="/classes" className="hover:text-blue-300 text-xl" onClick={() => setIsMobileMenuOpen(false)}>Classes</NavLink>
           <NavLink to="/blog" className="hover:text-blue-300 text-xl" onClick={() => setIsMobileMenuOpen(false)}>Blog</NavLink>
           <NavLink to="/contact" className="hover:text-blue-300 text-xl" onClick={() => setIsMobileMenuOpen(false)}>Contact</NavLink>
+          <NavLink to="/admin" className="hover:text-blue-300 text-xl">Admin</NavLink>
         </div>
       )}
     </header>

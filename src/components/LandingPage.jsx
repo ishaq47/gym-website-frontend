@@ -3,6 +3,7 @@ import { Dumbbell, Newspaper, Calendar, Users, Link } from 'lucide-react';
 import Blog from './Blog';
 import { NavLink } from 'react-router-dom';
 import Classes from './Classes';
+import DietPlanner from './DietPlanner';
 
 const LandingPage = () => {
   return (
@@ -16,7 +17,7 @@ const LandingPage = () => {
           <h1 className="text-5xl md:text-4xl lg:text-7xl font-bold mb-4 text-white text-center">Welcome to Swabi Muscles Gym</h1>
           <p className="md:text-2xl text-center md:p-8 text-white">Embrace a path to wellness and vitality that empowers your body and mind.
           Your journey to a healthier, happier you begins right here, right now</p>
-          <div className='flex gap-3 mt-4'>
+          <div className='flex gap-3 mt-2 '>
         <NavLink to='/contact'>  <button className='text-xl bg-[#6e2424] py-3 px-5 font-semibold hover:text-white text-white rounded-full hover:bg-black '>Contact Us</button></NavLink>
         {/* <NavLink to='/admin'>   <button className='text-xl bg-[#6e2424] py-3 px-5 font-semibold hover:text-white text-white rounded-full hover:bg-black'>Admin</button></NavLink> */}
         </div>
@@ -28,10 +29,12 @@ const LandingPage = () => {
           
          <Blog/>
         </section>
-        <section className="  mb-12">
+        <section className=" ">
          <Classes/>
         </section>
-
+        <section className="  mb-12">
+        <DietPlanner/>
+        </section>
         <section className="bg-gray-800 p-8 rounded-lg mb-12">
           <h2 className="text-3xl font-bold mb-4 text-blue-300">Why Choose SMG Gym?</h2>
           <ul className="list-disc list-inside text-gray-300">
@@ -41,13 +44,10 @@ const LandingPage = () => {
             <li>Supportive community atmosphere</li>
           </ul>
         </section>
+
       </main>
 
-      <footer className="bg-gray-800 text-gray-300 py-4 border-t border-gray-700">
-        <div className="container mx-auto text-center">
-          <p>&copy; 2024 SMG Gym. All rights reserved.</p>
-        </div>
-      </footer>
+    
     </div>
   );
 };

@@ -17,6 +17,7 @@ import Class from './components/Admin/Class';
 import Member from './components/Admin/Member';
 import AdminLogin from './components/AdminLogin';
 import ProtectdRoute from './components/ProtectdRoute';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -40,12 +41,9 @@ function App() {
             <Route path="blogs" element={<Blogs />} />
             <Route path="services" element={<Services />} />
             <Route path="class" element={<Class />} />
-
-
-
-
           </Route>
         </Routes>
+        <Footer/>
       </div>
     </Router>
   );

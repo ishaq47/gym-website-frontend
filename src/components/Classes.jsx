@@ -47,7 +47,7 @@ const Classes = () => {
   }, []);
 
   return (
-    <div className="min-h-screen mx-auto p-8">
+    <div className="md:min-h-screen mx-auto p-3 md:p-8">
       <h1 className="text-4xl font-bold text-center mb-12 text-white">Our Gym Classes</h1>
 
       {/* Classes List */}
