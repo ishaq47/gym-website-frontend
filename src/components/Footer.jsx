@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faWhatsapp, faTiktok } from '@fortawesome/free-brands-svg-icons';
+import { NavLink } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -15,10 +16,11 @@ const Footer = () => {
         {/* Navigation Links */}
         <div className="mb-4 md:mb-0 text-center md:text-left">
           <nav className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-6">
-            <a href="/" className="hover:text-white transition duration-200">Home</a>
-            <a href="/classes" className="hover:text-white transition duration-200">Classes</a>
-            <a href="/blog" className="hover:text-white transition duration-200">Blogs</a>
-            <a href="/contact" className="hover:text-white transition duration-200">Contact</a>
+          <NavLink to="/" className="hover:text-blue-300">Home</NavLink>
+            <NavLink to="/classes" className="hover:text-blue-300">Classes</NavLink>
+            <NavLink to="/blog" className="hover:text-blue-300">Blog</NavLink>
+            <NavLink to="/contact" className="hover:text-blue-300">Contact</NavLink>
+           
           </nav>
         </div>
 
