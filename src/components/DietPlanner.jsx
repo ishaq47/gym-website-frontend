@@ -182,8 +182,8 @@ const DietPlanner = () => {
         </button>
 
         {showPlan && dietPlan && (
-          <div className="mt-6">
-            <h2 className="text-xl font-bold">Your Personalized Diet Plan</h2>
+          <div className="mt-6  ">
+            <h2 className="text-xl font-bold text-red-400">Your Personalized Diet Plan</h2>
             <p>BMI: {calculateBMI()}</p>
             <p>Daily Calories: {dietPlan.dailyCalories}</p>
             <p>Protein: {dietPlan.macronutrients.protein}g</p>
@@ -191,8 +191,8 @@ const DietPlanner = () => {
             <p>Fats: {dietPlan.macronutrients.fats}g</p>
 
             {Object.entries(dietPlan.meals).map(([meal, details]) => (
-              <div key={meal} className="mt-4">
-                <h3 className="text-lg font-semibold capitalize">{meal}</h3>
+              <div key={meal} className="mt-4 border p-2 border-gray-400 rounded-lg">
+                <h3 className="text-lg font-semibold capitalize text-red-400">{meal}</h3>
                 <p>Calories: {details.calories}</p>
                 <p>Protein: {details.portions.protein}g</p>
                 <p>Carbs: {details.portions.carbs}g</p>
