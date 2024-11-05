@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import axios from 'axios';
 import { PiUsersThreeFill } from "react-icons/pi";
 import { Outlet } from 'react-router-dom';
@@ -10,7 +9,7 @@ import { FaLongArrowAltLeft, FaLongArrowAltRight } from 'react-icons/fa';
 
 function AdminDashboard() {
   const [dashboardData, setDashboardData] = useState({
-    subscribers: 300,
+    members: 300,
     blogs: 10,
     services: 12,
   });
