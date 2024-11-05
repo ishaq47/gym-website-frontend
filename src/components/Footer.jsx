@@ -32,7 +32,7 @@ const Footer = () => {
           <a href="tel:+923158317836" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
             <FontAwesomeIcon icon={faWhatsapp} className="text-green-300 hover:text-white transition duration-200" size="2xl" />
           </a>
-          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+          <a href="https://www.tiktok.com/@swabimusclesgym?_t=8r8cwsS5tii&_r=1" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
             <FontAwesomeIcon icon={faTiktok} className="text-gray-300 hover:text-white transition duration-200" size="2xl" />
           </a>
         </div>
