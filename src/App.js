@@ -17,9 +17,10 @@ import Member from './components/Admin/Member';
 import AdminLogin from './components/AdminLogin';
 import ProtectdRoute from './components/ProtectdRoute';
 import Footer from './components/Footer';
-
+import { AuthProvider } from './context/AuthContext';
 function App() {
   return (
+    <AuthProvider>
     <Router>
       <div className='background w-full fontt'>
         <Navbar />
@@ -45,6 +46,7 @@ function App() {
         <Footer/>
       </div>
     </Router>
+    </AuthProvider>
   );
 }
 

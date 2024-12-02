@@ -4,18 +4,20 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { API_URL } from '../services/authService';
+import { useAuth } from '../context/AuthContext';
 
 function Login() {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
+  const { setProfilePicture } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
     window.fbAsyncInit = function() {
       FB.init({
-        appId      : 'YOUR_APP_ID',
+        appId      : '1265898437884168',
         cookie     : true,
         xfbml      : true,
         version    : 'v15.0'
@@ -51,14 +53,17 @@ function Login() {
   const handleFacebookLogin = () => {
     FB.login((response) => {
       if (response.authResponse) {
-        axios.post(`${API_URL}/auth/facebook`, { accessToken: response.authResponse.accessToken })
-          .then(res => {
-            localStorage.setItem('token', res.data.token); // Save JWT token
-            navigate('/');
-          })
-          .catch(error => {
-            console.error('Error logging in with Facebook', error);
-          });
+        FB.api('/me', { fields: 'id,name,email,picture' }, (userInfo) => {
+          setProfilePicture(userInfo.picture.data.url);
+          axios.post(`${API_URL}/auth/facebook`, { accessToken: response.authResponse.accessToken })
+            .then(res => {
+              localStorage.setItem('token', res.data.token); // Save JWT token
+              navigate('/');
+            })
+            .catch(error => {
+              console.error('Error logging in with Facebook', error);
+            });
+        });
       } else {
         console.error('User cancelled login or did not fully authorize.');
       }

@@ -1,8 +1,10 @@
 import { MenuIcon, X } from 'lucide-react';
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 function Navbar() {
+  const { profilePicture }= useAuth();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
@@ -21,7 +23,9 @@ function Navbar() {
             <NavLink to="/blog" className="hover:text-blue-300">Blog</NavLink>
             <NavLink to="/contact" className="hover:text-blue-300">Contact</NavLink>
             <NavLink to="/admin" className="hover:text-blue-300">Admin</NavLink>
-
+            {profilePicture && (
+          <img src={profilePicture} alt="Profile" className="w-10 h-10 rounded-full" />
+        )}
           </ul>
           {/* Mobile Menu Icon */}
           <MenuIcon 
@@ -43,6 +47,9 @@ function Navbar() {
           <NavLink to="/blog" className="hover:text-blue-300 text-xl" onClick={() => setIsMobileMenuOpen(false)}>Blog</NavLink>
           <NavLink to="/contact" className="hover:text-blue-300 text-xl" onClick={() => setIsMobileMenuOpen(false)}>Contact</NavLink>
           <NavLink to="/admin" className="hover:text-blue-300 text-xl">Admin</NavLink>
+          {profilePicture && (
+          <img src={profilePicture} alt="Profile" className="w-10 h-10 rounded-full" />
+        )}
         </div>
       )}
     </header>
