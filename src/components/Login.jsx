@@ -1,5 +1,6 @@
 // src/components/Login.js
-import React, { useState } from 'react';
+/* global FB */
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { API_URL } from '../services/authService';
@@ -10,6 +11,27 @@ function Login() {
     password: '',
   });
   const navigate = useNavigate();
+
+  useEffect(() => {
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId      : 'YOUR_APP_ID',
+        cookie     : true,
+        xfbml      : true,
+        version    : 'v15.0'
+      });
+
+      FB.AppEvents.logPageView();
+    };
+
+    (function(d, s, id){
+       var js, fjs = d.getElementsByTagName(s)[0];
+       if (d.getElementById(id)) {return;}
+       js = d.createElement(s); js.id = id;
+       js.src = "https://connect.facebook.net/en_US/sdk.js";
+       fjs.parentNode.insertBefore(js, fjs);
+     }(document, 'script', 'facebook-jssdk'));
+  }, []);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -24,6 +46,23 @@ function Login() {
     } catch (error) {
       console.error('Error logging in', error);
     }
+  };
+
+  const handleFacebookLogin = () => {
+    FB.login((response) => {
+      if (response.authResponse) {
+        axios.post(`${API_URL}/auth/facebook`, { accessToken: response.authResponse.accessToken })
+          .then(res => {
+            localStorage.setItem('token', res.data.token); // Save JWT token
+            navigate('/');
+          })
+          .catch(error => {
+            console.error('Error logging in with Facebook', error);
+          });
+      } else {
+        console.error('User cancelled login or did not fully authorize.');
+      }
+    }, {scope: 'public_profile,email'});
   };
 
   return (
@@ -70,6 +109,12 @@ function Login() {
             Login
           </button>
         </form>
+        <button
+          onClick={handleFacebookLogin}
+          className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 mt-4"
+        >
+          Login with Facebook
+        </button>
         <p className="text-center text-gray-300 mt-6">
           Don't have an account?{' '}
           <a href="/" className="text-indigo-400 hover:underline">

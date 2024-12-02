@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import axios from 'axios'; // Import axios for API calls
 import { baseUrl } from '../BaseUrl';
+import { Link } from 'react-router-dom';
 
 function AdminLogin() {
   const [email, setEmail] = useState('');
@@ -66,6 +67,7 @@ function AdminLogin() {
           >
             Login
           </button>
+          <p className="text-center text-gray-300 mt-6"> login as a User  <Link to='/login' className='text-blue-500'> SignIn</Link> </p>
         </form>
       </div>
     </div>

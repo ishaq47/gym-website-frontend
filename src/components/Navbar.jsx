@@ -1,4 +1,4 @@
-import { Dumbbell, MenuIcon, X } from 'lucide-react';
+import { MenuIcon, X } from 'lucide-react';
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 

@@ -9,7 +9,7 @@ const ClassCard = ({ classInfo }) => {
     <div className="bg-[#2523239d] rounded-xl hover:scale-105 transition-transform duration-200 shadow-lg overflow-hidden">
       <img src={classInfo.image} alt={classInfo.name} className="w-full h-48 object-cover" />
       <div className="p-4">
-        <h3 className="text-xl font-semibold mb-2 text-white">{classInfo.name}</h3>
+        <h3 className="text-xl font-semibold mb-2 text-red-400">{classInfo.name}</h3>
         <p className="text-white mb-2">Instructor: {classInfo.instructor}</p>
         <div className="flex items-center text-white mb-2">
           <Clock className="w-4 h-4 mr-2" />

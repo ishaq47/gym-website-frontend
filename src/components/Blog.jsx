@@ -26,7 +26,7 @@ const Blog = () => {
         };
 
         fetchBlogs();
-    }, [baseUrl]); // Runs only once when the component mounts
+    }, []); // Runs only once when the component mounts
 
     if (loading) {
         return <div>Loading...</div>;
@@ -37,7 +37,7 @@ const Blog = () => {
     }
 
     return (
-        <div className="md:mx-auto md:p-8 bg-transparent">
+        <div className="md:mx-auto md:p-8 bg-transparent min-h-screen">
             <h1 className='text-4xl font-bold mb-10 text-white text-center'>Blogs</h1>
             {blogs.length === 0 ? (
                 <p>No blog posts available.</p>
@@ -45,9 +45,10 @@ const Blog = () => {
                 <ul className='grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4'>
                     {blogs.map((blog) => (
                         <li key={blog.id} className="mb-4 min-w-[280px] p-4 transition-all duration-200 hover:scale-105 bg-[#2523239d] rounded-xl md:shadow-lg text-white">
-                            <h3 className="text-xl font-semibold">{blog.title}</h3>
-                            <p className="">{blog.description}</p>
-                            {blog.imageUrl && <img src={blog.imageUrl} alt={blog.title} className="mt-2 w-fit h-auto rounded" />}
+                             {blog.imageUrl && <img src={blog.imageUrl} alt={blog.title} className="my-2 w-fit h-auto rounded" />}
+                            <h3 className="text-xl text-red-400 font-semibold">{blog.title}</h3>
+                            <p className="text-gray-300">{blog.description}</p>
+                           
                         </li>
                     ))}
                 </ul>

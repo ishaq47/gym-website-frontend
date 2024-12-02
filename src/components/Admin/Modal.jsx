@@ -1,5 +1,5 @@
 // Modal.js
-import { CrossIcon, Delete, DeleteIcon, ShieldCloseIcon, Trash } from 'lucide-react';
+import {  ShieldCloseIcon, Trash } from 'lucide-react';
 import React from 'react';
 import { baseUrl } from '../../BaseUrl';
 

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Dumbbell, Newspaper, Calendar, Users, Link } from 'lucide-react';
 import Blog from './Blog';
 import { NavLink } from 'react-router-dom';
 import Classes from './Classes';
@@ -22,7 +21,7 @@ const LandingPage = () => {
         {/* <NavLink to='/admin'>   <button className='text-xl bg-[#6e2424] py-3 px-5 font-semibold hover:text-white text-white rounded-full hover:bg-black'>Admin</button></NavLink> */}
         </div>
         </div>
-        <img src='/logo.png' className='w-fit'/>
+        <img src='/logo.png' className='w-fit' alt='imag'/>
         </section>
 
         <section className=" mb-12">

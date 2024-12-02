@@ -26,7 +26,7 @@ const Footer = () => {
 
         {/* Social Icons */}
         <div className="flex space-x-4 text-center">
-          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+          <a href="https://www.tiktok.com/@ishaq_khan470?_t=8rNuLu6uFap&_r=1" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
             <FontAwesomeIcon icon={faFacebook} className="text-blue-400 hover:text-white transition duration-200" size="2xl" />
           </a>
           <a href="tel:+923158317836" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">

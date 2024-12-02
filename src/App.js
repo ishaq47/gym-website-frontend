@@ -5,7 +5,6 @@ import Signup from './components/Signup';
 import Login from './components/Login';
 import AdminDashboard from './components/Admin/AdminDashboard';
 import UserProfile from './components/UserProfile';
-import Subscribers from './components/Admin/Member';
 import Blogs from './components/Admin/Blogs';
 import Services from './components/Admin/Services';
 import LandingPage from './components/LandingPage';
