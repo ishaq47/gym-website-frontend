@@ -2,7 +2,7 @@
 /* global FB */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { API_URL } from '../services/authService';
 import { useAuth } from '../context/AuthContext';
 
@@ -122,9 +122,9 @@ function Login() {
         </button>
         <p className="text-center text-gray-300 mt-6">
           Don't have an account?{' '}
-          <a href="/" className="text-indigo-400 hover:underline">
+          <Link to="/signup" className="text-indigo-400 hover:underline">
             Sign up
-          </a>
+          </Link>
         </p>
       </div>
     </div>
