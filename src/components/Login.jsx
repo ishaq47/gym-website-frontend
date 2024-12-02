@@ -1,9 +1,9 @@
 // src/components/Login.js
-/* global FB */
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { API_URL } from '../services/authService';
+import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 import { useAuth } from '../context/AuthContext';
 
 function Login() {
@@ -13,27 +13,6 @@ function Login() {
   });
   const { setProfilePicture } = useAuth();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    window.fbAsyncInit = function() {
-      FB.init({
-        appId      : '3825381311111415',
-        cookie     : true,
-        xfbml      : true,
-        version    : 'v15.0'
-      });
-
-      FB.AppEvents.logPageView();
-    };
-
-    (function(d, s, id){
-       var js, fjs = d.getElementsByTagName(s)[0];
-       if (d.getElementById(id)) {return;}
-       js = d.createElement(s); js.id = id;
-       js.src = "https://connect.facebook.net/en_US/sdk.js";
-       fjs.parentNode.insertBefore(js, fjs);
-     }(document, 'script', 'facebook-jssdk'));
-  }, []);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -50,24 +29,19 @@ function Login() {
     }
   };
 
-  const handleFacebookLogin = () => {
-    FB.login((response) => {
-      if (response.authResponse) {
-        FB.api('/me', { fields: 'id,name,email,picture' }, (userInfo) => {
-          setProfilePicture(userInfo.picture.data.url);
-          axios.post(`${API_URL}/auth/facebook`, { accessToken: response.authResponse.accessToken })
-            .then(res => {
-              localStorage.setItem('token', res.data.token); // Save JWT token
-              navigate('/');
-            })
-            .catch(error => {
-              console.error('Error logging in with Facebook', error);
-            });
-        });
-      } else {
-        console.error('User cancelled login or did not fully authorize.');
-      }
-    }, {scope: 'public_profile,email'});
+  const handleGoogleLogin = (response) => {
+    console.log('Google Login Response:', response);
+    const { credential } = response;
+    axios.post(`${API_URL}/auth/google`, { idToken: credential })
+      .then(res => {
+        console.log('Token Exchange Response:', res);
+        localStorage.setItem('token', res.data.token); // Save JWT token
+        setProfilePicture(response.profileObj.imageUrl); // Set profile picture URL
+        navigate('/');
+      })
+      .catch(error => {
+        console.error('Error logging in with Google', error);
+      });
   };
 
   return (
@@ -114,17 +88,19 @@ function Login() {
             Login
           </button>
         </form>
-        <button
-          onClick={handleFacebookLogin}
-          className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 mt-4"
-        >
-          Login with Facebook
-        </button>
+        <GoogleOAuthProvider clientId="845640890977-tutiubdi4sc5usb67j3bo14p3a5roig7.apps.googleusercontent.com">
+          <GoogleLogin
+            onSuccess={handleGoogleLogin}
+            onError={() => {
+              console.log('Login Failed');
+            }}
+          />
+        </GoogleOAuthProvider>
         <p className="text-center text-gray-300 mt-6">
           Don't have an account?{' '}
-          <Link to="/signup" className="text-indigo-400 hover:underline">
+          <a href="/signup" className="text-indigo-400 hover:underline">
             Sign up
-          </Link>
+          </a>
         </p>
       </div>
     </div>
