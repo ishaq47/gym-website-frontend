@@ -83,12 +83,12 @@ function Login() {
 
           <button
             type="submit"
-            className="w-full bg-indigo-600 text-white py-2 px-4 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50"
+            className="w-full bg-indigo-600 text-white py-2 px-4 mb-2 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50"
           >
             Login
           </button>
-        </form>
-        <GoogleOAuthProvider clientId="845640890977-tutiubdi4sc5usb67j3bo14p3a5roig7.apps.googleusercontent.com">
+          <GoogleOAuthProvider clientId="845640890977-tutiubdi4sc5usb67j3bo14p3a5roig7.apps.googleusercontent.com"
+        >
           <GoogleLogin
             onSuccess={handleGoogleLogin}
             onError={() => {
@@ -96,6 +96,8 @@ function Login() {
             }}
           />
         </GoogleOAuthProvider>
+        </form>
+       
         <p className="text-center text-gray-300 mt-6">
           Don't have an account?{' '}
           <a href="/signup" className="text-indigo-400 hover:underline">
