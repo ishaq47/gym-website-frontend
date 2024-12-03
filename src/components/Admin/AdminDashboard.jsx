@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { PiUsersThreeFill } from "react-icons/pi";
-import { Outlet } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import { baseUrl } from '../../BaseUrl';
 import { ImBlog } from 'react-icons/im';
 import { GrServices } from 'react-icons/gr';
@@ -9,9 +9,9 @@ import { FaLongArrowAltLeft, FaLongArrowAltRight } from 'react-icons/fa';
 
 function AdminDashboard() {
   const [dashboardData, setDashboardData] = useState({
-    members: 300,
-    blogs: 10,
-    services: 12,
+    members: '0',
+    blogs: '0',
+    services: '0',
   });
 
   const [sidebarOpen, setSidebarOpen] = useState(false)
@@ -24,6 +24,7 @@ function AdminDashboard() {
           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
         });
         setDashboardData(response.data);
+        console.log(response.data.members)
       } catch (error) {
         console.error('Error fetching dashboard data', error);
       }
@@ -41,16 +42,16 @@ function AdminDashboard() {
         <nav>
           <ul>
             <li className="mb-4">
-              <a href="/admin/members" className="text-white hover:text-indigo-600">Members</a>
+              <Link to="/admin/members" className="text-white hover:text-indigo-600">Members</Link>
             </li>
             <li className="mb-4">
-              <a href="/admin/blogs" className="text-white hover:text-indigo-600">Blogs</a>
+            <Link to="/admin/blogs" className="text-white hover:text-indigo-600">Blogs</Link>
             </li>
             <li className="mb-4">
-              <a href="/admin/services" className="text-white hover:text-indigo-600">Services</a>
+            <Link to="/admin/services" className="text-white hover:text-indigo-600">Services</Link>
             </li>
             <li className="mb-4">
-              <a href="/admin/class" className="text-white hover:text-indigo-600">Classes</a>
+            <Link to="/admin/class" className="text-white hover:text-indigo-600">Classes</Link>
             </li>
           </ul>
         </nav>

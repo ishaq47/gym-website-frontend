@@ -6,6 +6,7 @@ import { useAuth } from '../context/AuthContext';
 function Navbar() {
   const { profilePicture }= useAuth();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [showLogout, setShowLogout] = useState(false)
 
   return (
     <header className="bg-[#03030380]">
@@ -24,7 +25,13 @@ function Navbar() {
             <NavLink to="/contact" className="hover:text-blue-300">Contact</NavLink>
             <NavLink to="/admin" className="hover:text-blue-300">Admin</NavLink>
             {profilePicture && (
-          <img src={profilePicture} alt="Profile" className="w-10 h-10 rounded-full" />
+          // <img src={profilePicture} alt="Profile" className="w-10 h-10 rounded-full" />
+          <p onClick={()=>{
+            setShowLogout(!showLogout);
+          }} >{profilePicture}   <h2 className={` absolute right-1 text-sm  cursor-pointer hover:bg-red-500  flex border w-fit p-2 rounded-lg items-end ${showLogout ?'block':'hidden'}`} onClick={()=>{
+            localStorage.removeItem('token');
+            window.location.href = '/';
+          }}>Logout</h2> </p>
         )}
           </ul>
           {/* Mobile Menu Icon */}
@@ -48,7 +55,12 @@ function Navbar() {
           <NavLink to="/contact" className="hover:text-blue-300 text-xl" onClick={() => setIsMobileMenuOpen(false)}>Contact</NavLink>
           <NavLink to="/admin" className="hover:text-blue-300 text-xl">Admin</NavLink>
           {profilePicture && (
-          <img src={profilePicture} alt="Profile" className="w-10 h-10 rounded-full" />
+          <p onClick={()=>{
+            setShowLogout(!showLogout);
+          }} >{profilePicture}   <h2 className={` absolute right-1 text-sm  cursor-pointer hover:bg-red-500  flex border w-fit p-2 rounded-lg items-end ${showLogout ?'block':'hidden'}`} onClick={()=>{
+            localStorage.removeItem('token');
+            window.location.href = '/';
+          }}>Logout</h2> </p>
         )}
         </div>
       )}

@@ -1,7 +1,7 @@
 // src/components/Login.js
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { API_URL } from '../services/authService';
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 import { useAuth } from '../context/AuthContext';
@@ -23,7 +23,7 @@ function Login() {
     try {
       const response = await axios.post(`${API_URL}/login`, formData);
       localStorage.setItem('token', response.data.token); // Save JWT token
-      navigate('/');
+      navigate('/classes');
     } catch (error) {
       console.error('Error logging in', error);
     }
@@ -36,8 +36,9 @@ function Login() {
       .then(res => {
         console.log('Token Exchange Response:', res);
         localStorage.setItem('token', res.data.token); // Save JWT token
-        setProfilePicture(response.profileObj.imageUrl); // Set profile picture URL
-        navigate('/');
+        console.log(res.data, 'Data');
+        setProfilePicture(res.data.user.name); // Set profile picture URL
+        navigate('/classes');
       })
       .catch(error => {
         console.error('Error logging in with Google', error);
@@ -87,22 +88,21 @@ function Login() {
           >
             Login
           </button>
-          <GoogleOAuthProvider clientId="845640890977-tutiubdi4sc5usb67j3bo14p3a5roig7.apps.googleusercontent.com"
-        >
-          <GoogleLogin
-            onSuccess={handleGoogleLogin}
-            onError={() => {
-              console.log('Login Failed');
-            }}
-          />
-        </GoogleOAuthProvider>
+          <GoogleOAuthProvider clientId="845640890977-tutiubdi4sc5usb67j3bo14p3a5roig7.apps.googleusercontent.com">
+            <GoogleLogin
+              onSuccess={handleGoogleLogin}
+              onError={() => {
+                console.log('Login Failed');
+              }}
+            />
+          </GoogleOAuthProvider>
         </form>
-       
+
         <p className="text-center text-gray-300 mt-6">
           Don't have an account?{' '}
-          <a href="/signup" className="text-indigo-400 hover:underline">
+          <Link href="/signup" className="text-indigo-400 hover:underline">
             Sign up
-          </a>
+          </Link>
         </p>
       </div>
     </div>
