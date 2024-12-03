@@ -38,7 +38,7 @@ function Login() {
         localStorage.setItem('token', res.data.token); // Save JWT token
         console.log(res.data, 'Data');
         setProfilePicture(res.data.user.name); // Set profile picture URL
-        navigate('/classes');
+        navigate('/');
       })
       .catch(error => {
         console.error('Error logging in with Google', error);

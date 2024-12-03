@@ -3,14 +3,17 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { API_URL } from '../services/authService';
-
+import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
+import { useAuth } from '../context/AuthContext';
 function Signup() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     password: '',
   });
+  const { setProfilePicture } = useAuth();
   const navigate = useNavigate();
+
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -24,6 +27,21 @@ function Signup() {
     } catch (error) {
       console.error('Error signing up', error);
     }
+  };
+  const handleGoogleLogin = (response) => {
+    console.log('Google Login Response:', response);
+    const { credential } = response;
+    axios.post(`${API_URL}/auth/google`, { idToken: credential })
+      .then(res => {
+        console.log('Token Exchange Response:', res);
+        localStorage.setItem('token', res.data.token); // Save JWT token
+        console.log(res.data, 'Data');
+        setProfilePicture(res.data.user.name); // Set profile picture URL
+        navigate('/');
+      })
+      .catch(error => {
+        console.error('Error logging in with Google', error);
+      });
   };
 
   return (
@@ -75,16 +93,24 @@ function Signup() {
               value={formData.password}
               onChange={handleChange}
               required
-              className="w-full px-4 py-2 bg-[#130b0bd3] text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+              className="w-full px-4 py-2  bg-[#130b0bd3] text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
             />
           </div>
 
           <button
             type="submit"
-            className="w-full bg-indigo-600 text-white py-2 px-4 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50"
+            className="w-full bg-indigo-600 text-white py-2 px-4 mb-2 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50"
           >
             Sign Up
           </button>
+          <GoogleOAuthProvider clientId="845640890977-tutiubdi4sc5usb67j3bo14p3a5roig7.apps.googleusercontent.com">
+            <GoogleLogin
+              onSuccess={handleGoogleLogin}
+              onError={() => {
+                console.log('Login Failed');
+              }}
+            />
+          </GoogleOAuthProvider>
         </form>
         <p className="text-center text-gray-300 mt-6">
           Already have an account?{' '}
